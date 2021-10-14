@@ -16,7 +16,7 @@ class RecipeController extends Controller
     public function index()
     {
         $recipes = DB::table('recipes')->get();
-        return view('recipes.edit')->with('recipes', $recipes);
+        return view('recipes.show')->with('recipes', $recipes);
     }
 
     /**
@@ -64,7 +64,7 @@ class RecipeController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -74,8 +74,10 @@ class RecipeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        
+    {   
+        $recipe = DB::table('recipes')->find($id);
+
+        return view('recipes.edit')->with('recipe', $recipe);
     }
 
     /**

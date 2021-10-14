@@ -3,49 +3,24 @@
     
 @section('content')
 
-<!-- ***** DATA TABLE ****-->
-<div class="card">
-    <div class="card-header">
+<div class="row">
+    <div class="col-12">
+      <!-- Custom Tabs -->
+      <div class="card">
+        <div class="card-header d-flex p-0">
+          <h3 class="card-title p-3">{{$recipe->name}}</h3>
+        </div><!-- /.card-header -->
+        <div class="card-body">
+        <p>category: {{$recipe->category}}</p>
+        <p>description: {{$recipe->description}}</p>
+        </div>
+      </div>
+      <!-- ./card -->
     </div>
-    <div class="card-body">
-        <table id="table-data" class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Category</th>
-                    <th>Description</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($recipes as $recipe)
-                <tr>
-                    <td>{{$recipe->name}}</td>
-                    <td>{{$recipe->category}}</td>
-                    <td>{{$recipe->description}}</td>
-                    <td></td>
-                </tr>   
-                @endforeach
-
-            </tbody>
-            <tfoot>
-                <tr>
-                    <th>Name</th>
-                    <th>Category</th>
-                    <th>Description</th>
-                    <th>Actions</th>
-                </tr>
-            </tfoot>
-        </table>
-    </div>
+    <!-- /.col -->
 </div>
-
-
-
-
 
 @endsection
 
 @section('scripts')
-
 @endsection
