@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Recipe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RecipeController extends Controller
 {
@@ -13,7 +15,8 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        //
+        $recipes = DB::table('recipes')->get();
+        return view('recipes.edit')->with('recipes', $recipes);
     }
 
     /**
@@ -34,7 +37,23 @@ class RecipeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+
+            'name'=>'required',
+            'category'=>'required',
+            'description'=>'required',
+        ]);
+
+        $recipe = new Recipe();
+
+        $recipe->name = $request->input('name');
+        $recipe->category = $request->input('category');
+        $recipe->description = $request->input('description');
+
+        $recipe->save();
+
+        return redirect(route('recipes.index'));
+
     }
 
     /**
@@ -56,7 +75,7 @@ class RecipeController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
