@@ -2,7 +2,7 @@
 @section('title', 'Create new recipe')
     
 @section('content')
-    <div class="card card">
+    <div class="card m-3">
         <div class="card-header">
         <h1 class="card-title">Fill the form to create a new recipe:</h1>
         </div>

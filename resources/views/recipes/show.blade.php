@@ -4,7 +4,7 @@
 @section('content')
 
 <!-- ***** DATA TABLE ****-->
-<div class="card">
+<div class="card m-3">
     <div class="card-header">
     </div>
     <div class="card-body">

@@ -3,21 +3,60 @@
     
 @section('content')
 
-<div class="row">
-    <div class="col-12">
-      <!-- Custom Tabs -->
-      <div class="card">
-        <div class="card-header d-flex p-0">
-          <h3 class="card-title p-3">{{$recipe->name}}</h3>
-        </div><!-- /.card-header -->
-        <div class="card-body">
-        <p>category: {{$recipe->category}}</p>
-        <p>description: {{$recipe->description}}</p>
-        </div>
+<div class="card m-3">
+  <div class="card-header">
+  <h1 class="card-title">Fill the form with updated info:</h1>
+  </div>
+         {{-- error handling from creating recipes --}}
+          @if ($errors->any())
+              <div class="alert alert-danger">
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+              </div>
+          @endif
+
+  <!-- /.card-header -->
+  <!-- form start -->
+  <form role="form" action="{{ route('recipes.update',['recipe'=>$recipe->id]) }}" method="POST">
+      @csrf 
+      @method('PUT')
+  <div class="card-body">
+      <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" name ="name" class="form-control" id="name" placeholder="Enter name" value="{{$recipe->name}}">
       </div>
-      <!-- ./card -->
-    </div>
-    <!-- /.col -->
+      <div class="form-group">
+          <label>Category</label>
+          <select class="form-control select2bs4" style="width: 100%;" name="category" id="category">
+              <option @if ($recipe->category == "starter") {{'selected'}} @endif>Starter</option>
+              <option @if ($recipe->category == "Main course") {{'selected'}} @endif>Main course</option>
+              <option @if ($recipe->category == "Dessert") {{'selected'}} @endif>Dessert</option>
+          </select>
+      </div>
+      <div class="form-group">
+          <label>Description</label>
+          <textarea class="form-control" rows="3" name="description" id="description" placeholder="Enter the description here"
+          >{{$recipe->description}}</textarea>
+      </div>
+{{--             <div class="form-group">
+          <label for="exampleInputFile">Upload a photo</label>
+          <div class="input-group">
+              <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="exampleInputFile">
+                  <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+              </div>
+          </div>
+      </div> --}}
+  </div>
+  <!-- /.card-body -->
+
+  <div class="card-footer">
+      <button type="submit" class="btn btn-primary">Update</button>
+  </div>
+  </form>
 </div>
 
 @endsection
