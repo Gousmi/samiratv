@@ -52,7 +52,7 @@ class RecipeController extends Controller
 
         $recipe->save();
 
-        return redirect(route('recipes.index'));
+        return redirect(route('recipes.index'))->with('message', 'Recipe added successfully');
 
     }
 
@@ -98,8 +98,10 @@ class RecipeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(RECIPE $recipe)
     {
-        //
+        $recipe->delete();
+    
+        return redirect(route('recipes.index'))->with('message', 'Recipe deleted successfully');
     }
 }
