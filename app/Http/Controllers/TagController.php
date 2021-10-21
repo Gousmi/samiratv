@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class TagsController extends Controller
+class TagController extends Controller
 {
-    /**
+      /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        $tags = DB::table('tags')->get();
+        return view('tags.show')->with('tags', $tags);
     }
 
     /**
@@ -23,7 +26,7 @@ class TagsController extends Controller
      */
     public function create()
     {
-        //
+        return view('tags.create');
     }
 
     /**
@@ -34,7 +37,20 @@ class TagsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+
+            'name'=>'required',
+
+        ]);
+
+        $tag = new Tag();
+
+        $tag->name = $request->input('name');
+
+        $tag->save();
+
+        return redirect(route('tags.index'))->with('message', 'Tag added successfully');
+
     }
 
     /**
@@ -45,7 +61,7 @@ class TagsController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -54,9 +70,11 @@ class TagsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit(Tag $tag)
+    {   
+     /*    $tag = DB::table('tags')->find($tag); */
+
+        return view('tags.edit')->with('tag', $tag);
     }
 
     /**
@@ -66,9 +84,19 @@ class TagsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,Tag $tag)
     {
-        //
+        $validated = $request->validate([
+
+            'name'=>'required',
+
+        ]);
+        
+        $tag->name = $request->input('name');
+
+        $tag->save();
+
+        return redirect(route('tags.index'))->with('message', 'Tag updated successfully');
     }
 
     /**
@@ -77,8 +105,10 @@ class TagsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Tag $tag)
     {
-        //
+        $tag->delete();
+    
+        return redirect(route('tags.index'))->with('message', 'Tag deleted successfully');
     }
 }

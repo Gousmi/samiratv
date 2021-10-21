@@ -1,34 +1,30 @@
 @extends('layouts.admin.main')
-@section('title', 'Update recipe info')
+@section('title', 'Update tag info')
     
 @section('content')
 
 <!-- ***** DATA TABLE ****-->
 <div class="card m-3">
     <div class="card-header">
-    <a class="btn btn-primary float-right" href="{{route('recipes.create')}}">Add a new recipe</a>
+    <a class="btn btn-primary float-right" href="{{route('tags.create')}}">Add a new tag</a>
     </div>
     <div class="card-body">
         <table id="table-data" class="table table-bordered table-striped">
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Category</th>
-                    <th>Description</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($recipes as $recipe)
+                @foreach ($tags as $tag)
                 <tr>
-                    <td>{{$recipe->name}}</td>
-                    <td>{{$recipe->category}}</td>
-                    <td>{{$recipe->description}}</td>
+                    <td>{{$tag->name}}</td>
                     <td>
-                        <a href="{{route('recipes.edit', ['recipe' => $recipe->id])}}" class="ml-1 mr-3 edit-button" style="background:none; border:none;"> 
+                        <a href="{{route('tags.edit', ['tag' => $tag->id])}}" class="ml-1 mr-3 edit-button" style="background:none; border:none;"> 
                             <i class="far fa-edit text-blue "></i>
                         </a>
-                        <button data-id="{{$recipe->id}}" type="button" class="delete-button" style="background:none; border:none;" data-toggle="modal" data-target="#delete-confirmation-dialog">
+                        <button data-id="{{$tag->id}}" type="button" class="delete-button" style="background:none; border:none;" data-toggle="modal" data-target="#delete-confirmation-dialog">
                             <i class="far fa-trash-alt text-red"></i>
 
 
@@ -40,8 +36,6 @@
             <tfoot>
                 <tr>
                     <th>Name</th>
-                    <th>Category</th>
-                    <th>Description</th>
                     <th>Actions</th>
                 </tr>
             </tfoot>
@@ -60,7 +54,7 @@
             </button>
           </div>
           <div class="modal-body">
-            Are you sure you want the delete the selected recipe?
+            Are you sure you want the delete the selected tag?
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -80,7 +74,7 @@ $(document).ready ( function () {
     $('body').on('click', '.delete-button', function () {
 
       // the form action link
-      $('#delete-form').attr('action', '/recipes/' + $(this).data('id'));
+      $('#delete-form').attr('action', '/tags/' + $(this).data('id'));
 
     });
   });

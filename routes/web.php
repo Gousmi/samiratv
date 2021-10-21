@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\RecipeController;
-use App\Http\Controllers\TagsController;
+use App\Http\Controllers\TagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,4 +34,4 @@ Route::resource('recipes', RecipeController::class);
 
 
 //tags 
-Route::resource('tags', TagsController::class);
+Route::resource('tags', TagController::class);

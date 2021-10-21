@@ -59,30 +59,39 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+        <ul class="nav nav-pills nav-sidebar flex-column"  role="menu">
+          <li class="nav-item">
+            <a href="{{route('recipes.index')}}" class="nav-link">
               <i class="nav-icon fas fa-pizza-slice"></i>
               <p>
                 Recipes
-                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{route('recipes.create')}}" class="nav-link">
-                  <i class="fas fa-plus nav-icon"></i>
-                  <p>Add new recipe</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('recipes.index')}}" class="nav-link">
-                  <i class="fas fa-pen nav-icon"></i>
-                  <p>Update recipe</p>
-                </a>
-              </li>
-            </ul>
           </li>
+          <li class="nav-item">
+            <a href="{{route('tags.index')}}" class="nav-link">
+              <i class="nav-icon fas fa-tags"></i>
+              <p>
+                Tags
+              </p>
+            </a>
+          </li>
+                     <!-- old treeview 
+                             <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                  <a href="{{route('recipes.create')}}" class="nav-link">
+                                    <i class="fas fa-plus nav-icon"></i>
+                                    <p>Add new recipe</p>
+                                  </a>
+                                </li>
+                                <li class="nav-item">
+                                  <a href="{{route('recipes.index')}}" class="nav-link">
+                                    <i class="fas fa-pen nav-icon"></i>
+                                    <p>Update recipe</p>
+                                  </a>
+                                </li>
+                              </ul>  
+                             -->
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -101,8 +110,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Starter Page</li>
+             <!-- <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Starter Page</li> -->
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
