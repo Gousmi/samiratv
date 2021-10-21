@@ -38,6 +38,14 @@
                 <label>Description</label>
                 <textarea class="form-control" rows="3" name="description" id="description" placeholder="Enter the description here"></textarea>
             </div>
+            <div class="form-group">
+                <label>Tags</label>
+                <select class="select2" multiple="multiple" data-placeholder="Select a tag" style="width: 100%;">
+                  <option>Alabama</option>
+                  <option>Blida</option>
+                </select>
+              </div>
+
 {{--             <div class="form-group">
                 <label for="exampleInputFile">Upload a photo</label>
                 <div class="input-group">

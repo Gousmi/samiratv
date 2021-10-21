@@ -49,7 +49,6 @@ class RecipeController extends Controller
         $recipe->name = $request->input('name');
         $recipe->category = $request->input('category');
         $recipe->description = $request->input('description');
-
         $recipe->save();
 
         return redirect(route('recipes.index'))->with('message', 'Recipe added successfully');
