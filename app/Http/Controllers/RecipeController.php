@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Recipe;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -14,8 +15,16 @@ class RecipeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $recipes = DB::table('recipes')->get();
+    {   
+
+        //$recipes= DB::table('recipes')->get();
+        $recipes = Recipe::with('tags')->get();
+        /* 
+        foreach($recipes as $recipe)
+        {
+            $recipe->tagsList = $recipe->tags;
+        }
+        */
         return view('recipes.show')->with('recipes', $recipes);
     }
 
@@ -26,7 +35,9 @@ class RecipeController extends Controller
      */
     public function create()
     {
-        return view('recipes.create');
+        $tags = Tag::all();
+
+        return view('recipes.create')->with('tags', $tags);
     }
 
     /**
@@ -50,9 +61,14 @@ class RecipeController extends Controller
         $recipe->category = $request->input('category');
         $recipe->description = $request->input('description');
         $recipe->save();
+        
+            if ($request->has('tag'))
+        {
+            $recipe->tags()->sync($request->input('tag'));
+        }
 
+        
         return redirect(route('recipes.index'))->with('message', 'Recipe added successfully');
-
     }
 
     /**
@@ -75,8 +91,10 @@ class RecipeController extends Controller
     public function edit(Recipe $recipe)
     {   
      /*    $recipe = DB::table('recipes')->find($recipe); */
-
-        return view('recipes.edit')->with('recipe', $recipe);
+        $recipeWithTag = Recipe::with('tags')->find($recipe->id);
+        $tags = Tag::all();
+            //dd($recipeWithTag);
+        return view('recipes.edit')->with('recipe', $recipeWithTag)->with('tags', $tags);
     }
 
     /**
@@ -98,6 +116,12 @@ class RecipeController extends Controller
         $recipe->name = $request->input('name');
         $recipe->category = $request->input('category');
         $recipe->description = $request->input('description');
+
+        if ($request->has('tag'))
+        {
+            $recipe->tags()->sync($request->input('tag'));
+        }
+
 
         $recipe->save();
 

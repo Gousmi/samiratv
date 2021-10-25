@@ -15,6 +15,7 @@
                     <th>Name</th>
                     <th>Category</th>
                     <th>Description</th>
+                    <th>Tags</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -24,6 +25,9 @@
                     <td>{{$recipe->name}}</td>
                     <td>{{$recipe->category}}</td>
                     <td>{{$recipe->description}}</td>
+                    <td>@foreach ($recipe->tags as $tag)
+                      <span class="badge badge-pill badge-primary">{{$tag->name}}</span>
+                    @endforeach</td>
                     <td>
                         <a href="{{route('recipes.edit', ['recipe' => $recipe->id])}}" class="ml-1 mr-3 edit-button" style="background:none; border:none;"> 
                             <i class="far fa-edit text-blue "></i>
@@ -42,6 +46,7 @@
                     <th>Name</th>
                     <th>Category</th>
                     <th>Description</th>
+                    <th>Tags</th>
                     <th>Actions</th>
                 </tr>
             </tfoot>

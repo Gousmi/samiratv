@@ -23,8 +23,8 @@
             @csrf
         <div class="card-body">
             <div class="form-group">
-                <label for="name">Name:</label>
-                <input type="text" name ="name" class="form-control" id="name" placeholder="Enter name">
+                <label for="name">Recipe name:</label>
+                <input type="text" name ="name" class="form-control" id="name" placeholder="Ex: Mac&cheese, risotto ..etc">
             </div>
             <div class="form-group">
                 <label>Category</label>
@@ -40,21 +40,26 @@
             </div>
             <div class="form-group">
                 <label>Tags</label>
-                <select class="select2" multiple="multiple" data-placeholder="Select a tag" style="width: 100%;">
-                  <option>Alabama</option>
-                  <option>Blida</option>
+                <select class="select2" multiple="multiple" data-placeholder="Select a tag" name="tag[]" style="width: 100%;">
+                  @foreach ($tags as $tag)
+                
+                  <option value="{{$tag->id}}">{{$tag->name}}</option>
+                
+                  @endforeach
                 </select>
               </div>
 
-{{--             <div class="form-group">
-                <label for="exampleInputFile">Upload a photo</label>
-                <div class="input-group">
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="exampleInputFile">
-                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                    </div>
-                </div>
-            </div> --}}
+              
+                {{--   <div class="form-group">
+                        <label for="exampleInputFile">Upload a photo</label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="exampleInputFile">
+                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                            </div>
+                        </div>
+                </div>     --}}
+                                        
         </div>
         <!-- /.card-body -->
 

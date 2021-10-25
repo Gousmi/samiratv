@@ -41,6 +41,26 @@
           <textarea class="form-control" rows="3" name="description" id="description" placeholder="Enter the description here"
           >{{$recipe->description}}</textarea>
       </div>
+      <div class="form-group">
+        <label>Tags</label>
+        <select class="select2" multiple="multiple" data-placeholder="Select a tag" name="tag[]" style="width: 100%;">
+          @foreach ($tags as $tag)
+        
+            <option 
+                    @foreach ($recipe->tags as $rtag)
+                        @if ($rtag->name == $tag->name)
+                            {{'selected'}}
+                        @endif
+                    @endforeach
+                    
+
+                value="{{$tag->id}}"
+                >{{$tag->name}}
+            </option>
+        
+          @endforeach
+        </select>
+      </div>
 {{--             <div class="form-group">
           <label for="exampleInputFile">Upload a photo</label>
           <div class="input-group">
@@ -62,4 +82,18 @@
 @endsection
 
 @section('scripts')
+<script>
+   
+    $(document).ready(function () {
+
+            //Initialize Select2 Elements
+            $('.select2').select2()
+        
+            //Initialize Select2 Elements
+            $('.select2bs4').select2({
+                theme: 'bootstrap4'
+            }) 
+            /* $('#select2').val('3').trigger('change'); */
+        })
+</script>
 @endsection
