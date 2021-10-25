@@ -6,6 +6,8 @@
 
 require('./bootstrap');
 require('admin-lte/plugins/select2/js/select2.full.min.js');
+require( 'datatables.net-bs4' )();
+
 
 window.Vue = require('vue').default;
 

@@ -80,15 +80,22 @@
 @endsection
 
 @section('scripts')
+<script src="../../plugins/datatables/jquery.dataTables.js"></script>
+<script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 <script>
+  
 $(document).ready ( function () {
     $('body').on('click', '.delete-button', function () {
 
       // the form action link
       $('#delete-form').attr('action', '/recipes/' + $(this).data('id'));
+      
 
     });
   });
+  $(function () {
+    $("#table-data").DataTable();
+    });
 </script>
 
 @endsection
