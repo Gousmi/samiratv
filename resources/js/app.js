@@ -7,7 +7,7 @@
 require('./bootstrap');
 require('admin-lte/plugins/select2/js/select2.full.min.js');
 require( 'datatables.net-bs4' )();
-
+require('admin-lte/plugins/bs-custom-file-input/bs-custom-file-input.min.js');
 
 window.Vue = require('vue').default;
 
@@ -19,7 +19,7 @@ window.Vue = require('vue').default;
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-// const files = require.context('./', true, /\.vue$/i)
+// const files = require.context('./', true, //.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 //Vue.component('example-component', require('./components/ExampleComponent.vue').default);

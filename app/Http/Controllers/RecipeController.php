@@ -53,13 +53,20 @@ class RecipeController extends Controller
             'name'=>'required',
             'category'=>'required',
             'description'=>'required',
+            'image'=>'required|mimes:jpg,png,jpeg|max:5048',
         ]);
+
+        $newImageName = time() . '-' . $request->name . '.' . $request->image->extension();
+
+        $request->image->move(public_path('images'), $newImageName);
+
 
         $recipe = new Recipe();
 
         $recipe->name = $request->input('name');
         $recipe->category = $request->input('category');
         $recipe->description = $request->input('description');
+        $recipe->image_path = $newImageName;
         $recipe->save();
         
             if ($request->has('tag'))
