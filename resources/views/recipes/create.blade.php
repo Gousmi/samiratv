@@ -50,12 +50,8 @@
             <div class="form-group">
                 <label>Photo</label>
                 <div class="input-group">
-                    <div class="input-group-prepend">
-                    <span class="input-group-text" id="image_recipe_addon">Upload</span>
-                    </div>
                     <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="recipe-image"
-                        aria-describedby="image_recipe_addon" name="image">
+                    <input id="recipe-image" multiple type="file" class="custom-file-input"  name="images[]">
                     <label class="custom-file-label" for="recipe-image">Choose file</label>
                     </div>
                 </div>  
@@ -81,8 +77,9 @@
             $('.select2bs4').select2({
                 theme: 'bootstrap4'
             })
+
             bsCustomFileInput.init()
-        });
+        })
 
     </script>  
 @endsection

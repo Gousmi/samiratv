@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
 use App\Models\Recipe;
 use App\Models\Tag;
 use Illuminate\Http\Request;
@@ -47,34 +48,47 @@ class RecipeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   //dd($request);
         $validated = $request->validate([
 
             'name'=>'required',
             'category'=>'required',
             'description'=>'required',
-            'image'=>'required|mimes:jpg,png,jpeg|max:5048',
         ]);
-
-        $newImageName = time() . '-' . $request->name . '.' . $request->image->extension();
-
-        $request->image->move(public_path('images'), $newImageName);
-
 
         $recipe = new Recipe();
 
         $recipe->name = $request->input('name');
         $recipe->category = $request->input('category');
         $recipe->description = $request->input('description');
-        $recipe->image_path = $newImageName;
         $recipe->save();
         
+        // tags
             if ($request->has('tag'))
         {
             $recipe->tags()->sync($request->input('tag'));
         }
 
-        
+        // Images        
+        $i = 1;
+        $finaldata = array();
+        foreach ($request->images as $image)
+        {
+             $data = array();
+             $newImageName = '/images/recipes/'. time() . '-' . $i . '-' . $request->name . '.' . $image->extension();
+             $image->move(public_path('images'), $newImageName);
+             $i = $i +1;
+             
+        /*   $finalImage = new Image();
+             $finalImage->path = $newImageName;
+             $finalImage->recipe_id = $recipe->id;
+              */
+            $data = array('path' => $newImageName ,'recipe_id' => $recipe->id);
+            $finaldata[] = $data;
+
+        }
+        Image::upsert($finaldata,['path','recipe_id']);
+
         return redirect(route('recipes.index'))->with('message', 'Recipe added successfully');
     }
 

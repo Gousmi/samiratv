@@ -8,10 +8,12 @@ require('./bootstrap');
 require('admin-lte/plugins/select2/js/select2.full.min.js');
 require( 'datatables.net-bs4' )();
 require('admin-lte/plugins/bs-custom-file-input/bs-custom-file-input.min.js');
+require('dropzone/dist/min/dropzone.min.js');
 
+ 
 window.Vue = require('vue').default;
 
-/**
+/** 
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
  * components and automatically register them with their "basename".
