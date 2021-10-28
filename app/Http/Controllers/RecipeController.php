@@ -76,7 +76,7 @@ class RecipeController extends Controller
         {
              $data = array();
              $newImageName = '/images/recipes/'. time() . '-' . $i . '-' . $request->name . '.' . $image->extension();
-             $image->move(public_path('images'), $newImageName);
+             $image->move(public_path('images/recipes/'), $newImageName);
              $i = $i +1;
              
         /*   $finalImage = new Image();

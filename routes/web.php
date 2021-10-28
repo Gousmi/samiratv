@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\VisitorRecipeController;
 use App\Http\Controllers\TagController;
 
 /*
@@ -35,3 +36,6 @@ Route::resource('recipes', RecipeController::class);
 
 //tags 
 Route::resource('tags', TagController::class);
+
+//visitor routes
+Route::get('index', [VisitorRecipeController::class, 'index'])->name('homepage');
