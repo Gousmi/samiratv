@@ -21,6 +21,6 @@ class VisitorRecipeController extends Controller
             $recipe->tagsList = $recipe->tags;
         }
         */
-        return view('layouts.visitor.main')->with('recipes', $recipes);
+        return view('visitor.index')->with('recipes', $recipes);
     }
 }

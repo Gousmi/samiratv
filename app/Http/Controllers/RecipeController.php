@@ -26,7 +26,7 @@ class RecipeController extends Controller
             $recipe->tagsList = $recipe->tags;
         }
         */
-        return view('recipes.show')->with('recipes', $recipes);
+        return view('admin.recipes.show')->with('recipes', $recipes);
     }
 
     /**
@@ -38,7 +38,7 @@ class RecipeController extends Controller
     {
         $tags = Tag::all();
 
-        return view('recipes.create')->with('tags', $tags);
+        return view('admin.recipes.create')->with('tags', $tags);
     }
 
     /**
@@ -115,7 +115,7 @@ class RecipeController extends Controller
         $recipeWithTag = Recipe::with('tags')->find($recipe->id);
         $tags = Tag::all();
             //dd($recipeWithTag);
-        return view('recipes.edit')->with('recipe', $recipeWithTag)->with('tags', $tags);
+        return view('admin.recipes.edit')->with('recipe', $recipeWithTag)->with('tags', $tags);
     }
 
     /**

@@ -16,7 +16,7 @@ class TagController extends Controller
     public function index()
     {
         $tags = DB::table('tags')->get();
-        return view('tags.show')->with('tags', $tags);
+        return view('admin.tags.show')->with('tags', $tags);
     }
 
     /**
@@ -26,7 +26,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        return view('tags.create');
+        return view('admin.tags.create');
     }
 
     /**
@@ -74,7 +74,7 @@ class TagController extends Controller
     {   
      /*    $tag = DB::table('tags')->find($tag); */
 
-        return view('tags.edit')->with('tag', $tag);
+        return view('admin.tags.edit')->with('tag', $tag);
     }
 
     /**
