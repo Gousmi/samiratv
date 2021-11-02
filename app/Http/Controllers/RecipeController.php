@@ -54,6 +54,7 @@ class RecipeController extends Controller
             'name'=>'required',
             'category'=>'required',
             'description'=>'required',
+            'image'=>'required',
         ]);
 
         $recipe = new Recipe();
