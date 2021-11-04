@@ -12,6 +12,7 @@
         <table id="table-data" class="table table-bordered table-striped">
             <thead>
                 <tr>
+                    <th>Photos</th>
                     <th>Name</th>
                     <th>Category</th>
                     <th>Description</th>
@@ -22,6 +23,7 @@
             <tbody>
                 @foreach ($recipes as $recipe)
                 <tr>
+                    <td><img src="{{asset($recipe->images[0]->thumbnail->path)}}"></td>
                     <td>{{$recipe->name}}</td>
                     <td>{{$recipe->category}}</td>
                     <td>{{$recipe->description}}</td>
@@ -43,6 +45,7 @@
             </tbody>
             <tfoot>
                 <tr>
+                    <th>Photos</th>
                     <th>Name</th>
                     <th>Category</th>
                     <th>Description</th>
@@ -80,8 +83,7 @@
 @endsection
 
 @section('scripts')
-<script src="../../plugins/datatables/jquery.dataTables.js"></script>
-<script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+
 <script>
   
 $(document).ready ( function () {

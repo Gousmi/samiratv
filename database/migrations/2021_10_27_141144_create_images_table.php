@@ -15,8 +15,10 @@ class CreateImagesTable extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->string('path');
             $table->foreignId('recipe_id')->references('id')->on('recipes')->onDelete('cascade');
+            $table->boolean('is_thumb')->default(0);
             $table->timestamps();
             
         });

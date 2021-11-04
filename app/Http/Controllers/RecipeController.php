@@ -7,6 +7,7 @@ use App\Models\Recipe;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Intervention\Image\Facades\Image as IntImage;
 
 class RecipeController extends Controller
 {
@@ -54,7 +55,6 @@ class RecipeController extends Controller
             'name'=>'required',
             'category'=>'required',
             'description'=>'required',
-            'image'=>'required',
         ]);
 
         $recipe = new Recipe();
@@ -71,24 +71,60 @@ class RecipeController extends Controller
         }
 
         // Images        
-        $i = 1;
+/*         $i = 1;
         $finaldata = array();
         foreach ($request->images as $image)
-        {
-             $data = array();
-             $newImageName = '/images/recipes/'. time() . '-' . $i . '-' . $request->name . '.' . $image->extension();
-             $image->move(public_path('images/recipes/'), $newImageName);
-             $i = $i +1;
-             
-        /*   $finalImage = new Image();
-             $finalImage->path = $newImageName;
-             $finalImage->recipe_id = $recipe->id;
-              */
-            $data = array('path' => $newImageName ,'recipe_id' => $recipe->id);
+        {  
+            $data = array();
+            $newImageName = time() . '-' . $i . '-' . $request->name . '.' . $image->extension();
+            $newImagePath = '/images/recipes/'. $newImageName;
+            $image->move(public_path('images/recipes/'), $newImagePath);
+            $i = $i +1;
+            //creating thumbnail with intervention
+            dd($image->path());
+            $thumbnail = IntImage::make($image->path())->resize(240, 160)->save('/images/recipes/thumbnails' . $newImageName, 50);
+            $newThumbnailPath = '/images/recipes/thumbnails'. $newImageName;
+             //saving the image info in an array
+            $data = array('path' => $newImagePath ,'recipe_id' => $recipe->id);
             $finaldata[] = $data;
-
+            //saving the thumbnail info in an array
+            $data = array('path' => $newThumbnailPath ,'recipe_id' => $recipe->id);
+            $finaldata[] = $data;
         }
-        Image::upsert($finaldata,['path','recipe_id']);
+        Image::upsert($finaldata,['path','recipe_id']); */
+
+        if($request->hasFile('images')) {
+            $files = $request->file('images');
+            $i = 0;
+            foreach($files as $image_to_upload) {
+                //image
+                $new_image = new Image();
+                $new_image->recipe_id = $recipe->id;
+                $image = $image_to_upload;
+                $new_name = time() . '-' . $i . '-' . $request->name . '.' . $image->extension();
+                $new_image->name = $new_name;
+             
+                $destinationPath = public_path('/images/recipes/');
+                $img = IntImage::make($image->path())->save($destinationPath.'/'.$new_name);;
+                $new_image->path = '/images/recipes/' . $new_name;
+                $new_image->save();
+                //thumbnail
+                $new_thumbnail = new Image();
+                $new_thumbnail->recipe_id = $recipe->id;
+                $thumbnail = $image_to_upload;
+                $new_name = time() . '-' . $i . '-' . $request->name . '.' . $thumbnail->extension();
+                $new_thumbnail->name = $new_name;
+             
+                $destinationPath = public_path('/images/recipes/thumbnails/');
+                $thumb = IntImage::make($thumbnail->path())->resize(75, 75, function ($constraint) {
+                    $constraint->aspectRatio();})->save($destinationPath.'/'.$new_name);
+                $new_thumbnail->path = '/images/recipes/thumbnails/' . $new_name;
+                $new_thumbnail->is_thumb = '1' ; 
+                $new_thumbnail->save();
+                
+                $i++;
+            }
+        }
 
         return redirect(route('recipes.index'))->with('message', 'Recipe added successfully');
     }
