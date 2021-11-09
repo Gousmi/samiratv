@@ -39,3 +39,5 @@ Route::resource('tags', TagController::class);
 
 //visitor routes
 Route::get('index', [VisitorRecipeController::class, 'index'])->name('homepage');
+
+Route::get('recipes/{recipe}/editimage', [RecipeController::class, 'editImage'])->name('recipes.editimage');

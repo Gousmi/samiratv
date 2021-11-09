@@ -23,13 +23,22 @@
             <tbody>
                 @foreach ($recipes as $recipe)
                 <tr>
-                    <td><img src="{{asset($recipe->images[0]->thumbnail->path)}}"></td>
+                   {{-- Checking if a photo exists for the recipe and show its thumbnail --}}
+                    @if (isset($recipe->images[0]))
+                    {{-- {{dd($recipe->images[0]->thumbnail)}} --}}
+                    <td ><img src="{{asset($recipe->images[0]->thumbnail->path)}}"></td>
+                    @else
+                    <td><p class="alert alert-danger" role="alert">No available photos</td>
+                    @endif
                     <td>{{$recipe->name}}</td>
                     <td>{{$recipe->category}}</td>
                     <td>{{$recipe->description}}</td>
-                    <td>@foreach ($recipe->tags as $tag)
-                      <span class="badge badge-pill badge-primary">{{$tag->name}}</span>
-                    @endforeach</td>
+                    <td>
+                      @foreach ($recipe->tags as $tag)
+                      <span class="badge badge-pill badge-primary">{{$tag->name}}</span> 
+                      @endforeach
+                    </td>  
+                   
                     <td>
                         <a href="{{route('recipes.edit', ['recipe' => $recipe->id])}}" class="ml-1 mr-3 edit-button" style="background:none; border:none;"> 
                             <i class="far fa-edit text-blue "></i>

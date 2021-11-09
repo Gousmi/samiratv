@@ -112,7 +112,6 @@ class RecipeController extends Controller
                 $new_thumbnail = new Image();
                 $new_thumbnail->recipe_id = $recipe->id;
                 $thumbnail = $image_to_upload;
-                $new_name = time() . '-' . $i . '-' . $request->name . '.' . $thumbnail->extension();
                 $new_thumbnail->name = $new_name;
              
                 $destinationPath = public_path('/images/recipes/thumbnails/');
@@ -181,7 +180,8 @@ class RecipeController extends Controller
         }
 
 
-        $recipe->save();
+
+        $recipe->update();
 
         return redirect(route('recipes.index'))->with('message', 'Recipe updated successfully');
     }
@@ -197,5 +197,17 @@ class RecipeController extends Controller
         $recipe->delete();
     
         return redirect(route('recipes.index'))->with('message', 'Recipe deleted successfully');
+    }
+
+    public function editImage(Recipe $recipe)
+    {
+        return view('admin.recipes.editimage')->with('recipe', $recipe);
+
+    }
+
+    public function updateImage(Recipe $recipe)
+    {
+        
+
     }
 }
