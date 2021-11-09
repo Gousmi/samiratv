@@ -9,6 +9,7 @@ require('admin-lte/plugins/select2/js/select2.full.min.js');
 require( 'datatables.net-bs4' )();
 require('admin-lte/plugins/bs-custom-file-input/bs-custom-file-input.min.js');
 require('dropzone/dist/min/dropzone.min.js');
+require('admin-lte/plugins/ekko-lightbox/ekko-lightbox.js')
 
  
 window.Vue = require('vue').default;

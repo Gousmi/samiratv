@@ -26,10 +26,10 @@
         @method('PUT')
         <div class="row">
             @foreach ($recipe->images as $image)
-             @if ($image->is_thumb == 1)    
+             @if ($image->is_thumb == 0)    
              <div class="col-md-6 col-lg-3 col-xl-2">
              <div class="card mb-2 bg-gradient-dark">
-                 <img class="card-img-top" src="{{asset($image->thumbnail->path)}}" alt="Dist Photo 1">
+                 <img class="card-img-top" src="{{asset($image->path)}}" alt="Dist Photo 1">
                  <div class="card-img-overlay d-flex flex-column justify-content-end">
                  </div>
              </div>
