@@ -104,7 +104,7 @@ $(document).ready ( function () {
 
     });
   });
-  $(function () {
+$(function () {
     $("#table-data").DataTable();
     });
 </script>

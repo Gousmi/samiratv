@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\VisitorRecipeController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\ImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,3 +42,6 @@ Route::resource('tags', TagController::class);
 Route::get('index', [VisitorRecipeController::class, 'index'])->name('homepage');
 
 Route::get('recipes/{recipe}/editimage', [RecipeController::class, 'editImage'])->name('recipes.editimage');
+
+// deleting an image from editimage page
+Route::delete('images/{image}', [ImageController::class, 'destroy'])->name('images.destroy');
