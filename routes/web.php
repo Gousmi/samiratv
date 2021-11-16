@@ -45,3 +45,5 @@ Route::get('recipes/{recipe}/editimage', [RecipeController::class, 'editImage'])
 
 // deleting an image from editimage page
 Route::delete('images/{image}', [ImageController::class, 'destroy'])->name('images.destroy');
+
+Route::post('images/store', [ImageController::class, 'store'])->name('images.store');

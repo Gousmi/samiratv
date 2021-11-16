@@ -6,11 +6,29 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
-            <div class="card card-primary">
+            <div class="card">
                 <div class="card-header">
+                    <form role="form" action="{{ route('images.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <h4 class="card-title">Add new photos</h4>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input id="recipe-image" multiple type="file" class="custom-file-input"  name="images[]">
+                                    <label class="custom-file-label" for="recipe-image">Choose file</label>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>  
+                        </div>
+                        <!-- hidden input to pass the recipe_id to imageController@store -->
+                        <input id="recipe_id" name="recipe_id" type="hidden" value="{{$recipe->id;}}">
+                        <input id="recipe_name" name="recipe_name" type="hidden" value="{{$recipe->name;}}">
+                        
+                    </form>
                     <h4 class="card-title">Images gallery</h4>
                 </div>
                 <div class="card-body">
+                    
                     <div class="row">
                         @foreach ($recipe->images as $image)
                             @if ($image->is_thumb == 0) 
@@ -73,5 +91,8 @@ $(function () {
 
     });
   });
+  $(document).ready(function () {
+            bsCustomFileInput.init()
+        })
 </script>
 @endsection

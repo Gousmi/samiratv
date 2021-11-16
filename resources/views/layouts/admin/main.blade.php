@@ -129,6 +129,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </button>
         </div>
     @endif
+    @if (session()->has('warning'))
+        <div class="alert alert-danger alert-dismissible fade show m-4" role="alert">
+          {{ session()->get('warning') }} 
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+    @endif
     <!-- Main content -->
     <div class="content">
 
