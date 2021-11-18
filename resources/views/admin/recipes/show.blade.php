@@ -99,7 +99,7 @@ $(document).ready ( function () {
     $('body').on('click', '.delete-button', function () {
 
       // the form action link
-      $('#delete-form').attr('action', 'admin/recipes/' + $(this).data('id'));
+      $('#delete-form').attr('action', 'recipes/' + $(this).data('id'));
       
 
     });

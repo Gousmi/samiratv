@@ -90,15 +90,18 @@
                      </div>
                   </div>
                   <div class="main">
-                     <!-- Another variation with a button -->
-                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search recipes">
-                        <div class="input-group-append">
-                           <button class="btn btn-secondary" type="button" style="background-color: #f26522; border-color:#f26522 ">
-                           <i class="fa fa-search"></i>
-                           </button>
+                     <!-- Search recipes form -->
+                     <form action="" >
+                        @csrf
+                        <div class="input-group">
+                           <input type="text" class="form-control" placeholder="Search recipes" name="search" value="{{request('search')}}">
+                           <div class="input-group-append">
+                              <button class="btn btn-secondary" type="button" style="background-color: #f26522; border-color:#f26522 ">
+                              <i class="fa fa-search"></i>
+                              </button>
+                           </div>
                         </div>
-                     </div>
+                     </form>
                   </div>
                   <div class="header_box">
                      <div class="lang_box ">
@@ -114,13 +117,9 @@
                      </div>
                      <div class="login_menu">
                         <ul>
-                           <li><a href="#">
-                              <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                              <span class="padding_10">Cart</span></a>
-                           </li>
-                           <li><a href="#">
+                           <li><a href="{{route('admin.recipes.index')}}">
                               <i class="fa fa-user" aria-hidden="true"></i>
-                              <span class="padding_10">Cart</span></a>
+                              <span>Admin</span></a>
                            </li>
                         </ul>
                      </div>
@@ -183,8 +182,9 @@
                                  </div>
                               </div>
                            </div>
-                           @endforeach
+                           @endforeach                            
                         </div>
+                       {{ $recipes->links() }}
                      </div>
                   </div>
                </div>

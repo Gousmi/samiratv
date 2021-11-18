@@ -15,7 +15,10 @@ class RecipeController extends Controller
     {   
 
         //$recipes= DB::table('recipes')->get();
-        $recipes = Recipe::with('tags')->with('images')->get();
+        $recipes = Recipe::where('name','like','%'. request('search') .'%')
+                        ->with('tags')
+                        ->with('images')
+                        ->paginate(9);
         /* 
         foreach($recipes as $recipe)
         {

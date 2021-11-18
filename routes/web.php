@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 //use App\Http\Controllers\Admin\RecipeController;
-use App\Http\Controllers\VisitorRecipeController;
+//use App\Http\Controllers\VisitorRecipeController;
 //use App\Http\Controllers\TagController;
 //use App\Http\Controllers\ImageController;
 
