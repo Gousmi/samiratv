@@ -6,7 +6,7 @@
 <!-- ***** DATA TABLE ****-->
 <div class="card m-3">
     <div class="card-header">
-    <a class="btn btn-primary float-right" href="{{route('recipes.create')}}">Add a new recipe</a>
+    <a class="btn btn-primary float-right" href="{{route('admin.recipes.create')}}">Add a new recipe</a>
     </div>
     <div class="card-body">
         <table id="table-data" class="table table-bordered table-striped">
@@ -40,7 +40,7 @@
                     </td>  
                    
                     <td>
-                        <a href="{{route('recipes.edit', ['recipe' => $recipe->id])}}" class="ml-1 mr-3 edit-button" style="background:none; border:none;"> 
+                        <a href="{{route('admin.recipes.edit', ['recipe' => $recipe->id])}}" class="ml-1 mr-3 edit-button" style="background:none; border:none;"> 
                             <i class="far fa-edit text-blue "></i>
                         </a>
                         <button data-id="{{$recipe->id}}" type="button" class="delete-button" style="background:none; border:none;" data-toggle="modal" data-target="#delete-confirmation-dialog">
@@ -99,7 +99,7 @@ $(document).ready ( function () {
     $('body').on('click', '.delete-button', function () {
 
       // the form action link
-      $('#delete-form').attr('action', '/recipes/' + $(this).data('id'));
+      $('#delete-form').attr('action', 'admin/recipes/' + $(this).data('id'));
       
 
     });

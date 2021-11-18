@@ -18,7 +18,7 @@
                 @endif
 
         <!-- form start -->
-        <form role="form" action="{{ route('recipes.store') }}" method="POST" enctype="multipart/form-data">
+        <form role="form" action="{{ route('admin.recipes.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
         <div class="card-body">
             <div class="form-group">

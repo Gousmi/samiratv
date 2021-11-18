@@ -19,7 +19,7 @@
 
         <!-- /.card-header -->
         <!-- form start -->
-        <form role="form" action="{{ route('tags.store') }}" method="POST">
+        <form role="form" action="{{ route('admin.tags.store') }}" method="POST">
             @csrf
         <div class="card-body">
             <div class="form-group">

@@ -6,7 +6,7 @@
 <!-- ***** DATA TABLE ****-->
 <div class="card m-3">
     <div class="card-header">
-    <a class="btn btn-primary float-right" href="{{route('tags.create')}}">Add a new tag</a>
+    <a class="btn btn-primary float-right" href="{{route('admin.tags.create')}}">Add a new tag</a>
     </div>
     <div class="card-body">
         <table id="table-data" class="table table-bordered table-striped">
@@ -21,7 +21,7 @@
                 <tr>
                     <td>{{$tag->name}}</td>
                     <td>
-                        <a href="{{route('tags.edit', ['tag' => $tag->id])}}" class="ml-1 mr-3 edit-button" style="background:none; border:none;"> 
+                        <a href="{{route('admin.tags.edit', ['tag' => $tag->id])}}" class="ml-1 mr-3 edit-button" style="background:none; border:none;"> 
                             <i class="far fa-edit text-blue "></i>
                         </a>
                         <button data-id="{{$tag->id}}" type="button" class="delete-button" style="background:none; border:none;" data-toggle="modal" data-target="#delete-confirmation-dialog">
@@ -74,7 +74,7 @@ $(document).ready ( function () {
     $('body').on('click', '.delete-button', function () {
 
       // the form action link
-      $('#delete-form').attr('action', '/tags/' + $(this).data('id'));
+      $('#delete-form').attr('action', 'tags/' + $(this).data('id'));
 
     });
   });

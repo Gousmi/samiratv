@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -49,7 +50,7 @@ class TagController extends Controller
 
         $tag->save();
 
-        return redirect(route('tags.index'))->with('message', 'Tag added successfully');
+        return redirect(route('admin.tags.index'))->with('message', 'Tag added successfully');
 
     }
 
@@ -96,7 +97,7 @@ class TagController extends Controller
 
         $tag->save();
 
-        return redirect(route('tags.index'))->with('message', 'Tag updated successfully');
+        return redirect(route('admin.tags.index'))->with('message', 'Tag updated successfully');
     }
 
     /**
@@ -109,6 +110,6 @@ class TagController extends Controller
     {
         $tag->delete();
     
-        return redirect(route('tags.index'))->with('message', 'Tag deleted successfully');
+        return redirect(route('admin.tags.index'))->with('message', 'Tag deleted successfully');
     }
 }

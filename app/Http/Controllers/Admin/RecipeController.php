@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Image;
 use App\Models\Recipe;
 use App\Models\Tag;
@@ -125,7 +126,7 @@ class RecipeController extends Controller
             }
         }
 
-        return redirect(route('recipes.index'))->with('message', 'Recipe added successfully');
+        return redirect(route('admin.recipes.index'))->with('message', 'Recipe added successfully');
     }
 
     /**
@@ -183,7 +184,7 @@ class RecipeController extends Controller
 
         $recipe->update();
 
-        return redirect(route('recipes.index'))->with('message', 'Recipe updated successfully');
+        return redirect(route('admin.recipes.index'))->with('message', 'Recipe updated successfully');
     }
 
     /**
@@ -196,7 +197,7 @@ class RecipeController extends Controller
     {
         $recipe->delete();
     
-        return redirect(route('recipes.index'))->with('message', 'Recipe deleted successfully');
+        return redirect(route('admin.recipes.index'))->with('message', 'Recipe deleted successfully');
     }
 
     public function editImage(Recipe $recipe)

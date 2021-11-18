@@ -21,7 +21,7 @@
     <!-- /.card-header -->
   <div class="card-body">
     <!-- form start -->
-    <form role="form" action="{{ route('recipes.update',['recipe'=>$recipe->id]) }}" method="POST">
+    <form role="form" action="{{ route('admin.recipes.update',['recipe'=>$recipe->id]) }}" method="POST">
         @csrf 
         @method('PUT')
         <div class="row">
@@ -38,7 +38,7 @@
             @endforeach
 
             <div class="form-group">
-                <a class="btn btn-primary float-right" href="{{route('recipes.editimage', ['recipe' => $recipe])}}">Update images</a>
+                <a class="btn btn-primary float-right" href="{{route('admin.recipes.editimage', ['recipe' => $recipe])}}">Update images</a>
             </div>
         </div>
         <div class="form-group">

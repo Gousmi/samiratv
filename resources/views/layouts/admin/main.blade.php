@@ -62,7 +62,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column"  role="menu">
           <li class="nav-item">
-            <a href="{{route('recipes.index')}}" class="nav-link">
+            <a href="{{route('admin.recipes.index')}}" class="nav-link">
               <i class="nav-icon fas fa-pizza-slice"></i>
               <p>
                 Recipes
@@ -70,7 +70,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{route('tags.index')}}" class="nav-link">
+            <a href="{{route('admin.tags.index')}}" class="nav-link">
               <i class="nav-icon fas fa-tags"></i>
               <p>
                 Tags
@@ -80,13 +80,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                      <!-- old treeview 
                              <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                  <a href="{{route('recipes.create')}}" class="nav-link">
+                                  <a href="{{route('admin.recipes.create')}}" class="nav-link">
                                     <i class="fas fa-plus nav-icon"></i>
                                     <p>Add new recipe</p>
                                   </a>
                                 </li>
                                 <li class="nav-item">
-                                  <a href="{{route('recipes.index')}}" class="nav-link">
+                                  <a href="{{route('admin.recipes.index')}}" class="nav-link">
                                     <i class="fas fa-pen nav-icon"></i>
                                     <p>Update recipe</p>
                                   </a>

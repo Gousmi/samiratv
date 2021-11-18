@@ -3,10 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
-use App\Http\Controllers\RecipeController;
+//use App\Http\Controllers\Admin\RecipeController;
 use App\Http\Controllers\VisitorRecipeController;
-use App\Http\Controllers\TagController;
-use App\Http\Controllers\ImageController;
+//use App\Http\Controllers\TagController;
+//use App\Http\Controllers\ImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,19 +31,41 @@ Route::get('test', function(){ return view('layouts/visitor/main');});
 
 //Route::get('recipes/create', [App\Http\Controllers\RecipeController::class, 'create']);
 
+/* Route::prefix('admin')->group(function(){
+    Route::resource('recipes', RecipeController::class);
+    Route::resource('tags', TagController::class);
+}); */
+
+// Admin grouped routes
+Route::group(['namespace'=>'App\Http\Controllers\Admin','prefix'=>'admin','as'=>'admin.'], function(){
+    //recipes
+    Route::get('recipes/{recipe}/editimage', [App\Http\Controllers\Admin\RecipeController::class, 'editImage'])->name('recipes.editimage');
+    Route::resource('recipes', 'RecipeController');
+    //tags
+    Route::resource('tags', 'TagController');
+    //images
+    Route::post('images/store', [App\Http\Controllers\Admin\ImageController::class, 'store'])->name('images.store');
+    Route::delete('images/{image}', [App\Http\Controllers\Admin\ImageController::class, 'destroy'])->name('images.destroy');
+
+});
+
+//visitor grouped routes
+Route::group(['namespace'=>'App\Http\Controllers\Visitor','prefix'=>'visitor','as'=>'visitor.'], function(){
+
+Route::get('index', [App\Http\Controllers\Visitor\RecipeController::class, 'index'])->name('recipes.index');
+
+});
+// OLD ROUTES
 //recipes
-Route::resource('recipes', RecipeController::class);
+//Route::resource('recipes', RecipeController::class);
 
 
 //tags 
-Route::resource('tags', TagController::class);
+//Route::resource('tags', TagController::class);
 
-//visitor routes
-Route::get('index', [VisitorRecipeController::class, 'index'])->name('homepage');
 
-Route::get('recipes/{recipe}/editimage', [RecipeController::class, 'editImage'])->name('recipes.editimage');
+//Route::get('recipes/{recipe}/editimage', [RecipeController::class, 'editImage'])->name('recipes.editimage');
 
 // deleting an image from editimage page
-Route::delete('images/{image}', [ImageController::class, 'destroy'])->name('images.destroy');
-
-Route::post('images/store', [ImageController::class, 'store'])->name('images.store');
+//Route::post('images/store', [ImageController::class, 'store'])->name('images.store');
+//Route::delete('images/{image}', [ImageController::class, 'destroy'])->name('images.destroy');

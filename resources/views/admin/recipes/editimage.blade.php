@@ -8,7 +8,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <form role="form" action="{{ route('images.store') }}" method="POST" enctype="multipart/form-data">
+                    <form role="form" action="{{ route('admin.images.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <h4 class="card-title">Add new photos</h4>
@@ -86,7 +86,7 @@ $(function () {
     $('body').on('click', '.delete-button', function () {
 
       // the form action link
-      $('#delete-form').attr('action', '/images/' + $(this).data('id'));
+      $('#delete-form').attr('action', 'admin/images/' + $(this).data('id'));
       
 
     });
