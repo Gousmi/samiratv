@@ -80,6 +80,7 @@
 
             bsCustomFileInput.init()
         })
-
+        $('#description').summernote()
+        
     </script>  
 @endsection

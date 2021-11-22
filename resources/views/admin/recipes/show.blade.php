@@ -32,7 +32,7 @@
                     @endif
                     <td>{{$recipe->name}}</td>
                     <td>{{$recipe->category}}</td>
-                    <td>{{$recipe->description}}</td>
+                    <td>{!! $recipe->description !!}</td>
                     <td>
                       @foreach ($recipe->tags as $tag)
                       <span class="badge badge-pill badge-primary">{{$tag->name}}</span> 

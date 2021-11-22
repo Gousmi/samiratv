@@ -53,6 +53,8 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','prefix'=>'admin','as'=>
 Route::group(['namespace'=>'App\Http\Controllers\Visitor','prefix'=>'visitor','as'=>'visitor.'], function(){
 
 Route::get('index', [App\Http\Controllers\Visitor\RecipeController::class, 'index'])->name('recipes.index');
+Route::get('comment/store', [App\Http\Controllers\Visitor\CommentController::class, 'store'])->name('comment.store');
+Route::get('reply/store', [App\Http\Controllers\Visitor\CommentController::class, 'replyStore'])->name('reply.store');
 
 });
 // OLD ROUTES

@@ -18,4 +18,10 @@ class Recipe extends Model
     {
         return $this->hasMany(Image::class);
     }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable')->whereNull('parent_id');
+    }
+    
 }

@@ -35,6 +35,7 @@
       <link rel="stylesheet" href="{{asset('css/visitor//owl.carousel.min.css')}}">
       <link rel="stylesoeet" href="{{asset('css/visitor//owl.theme.default.min.css')}}">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+        <link rel="stylesheet" href="{{asset('css/app.css')}}">
    </head>
    <body>
       <!-- banner bg main start -->
