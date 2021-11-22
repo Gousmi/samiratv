@@ -27,4 +27,11 @@ class RecipeController extends Controller
         */
         return view('visitor.index')->with('recipes', $recipes);
     }
+
+    public function show(Recipe $recipe)
+    {
+        $recipeWithTag = Recipe::with('tags')->find($recipe->id);
+        return view('visitor.recipes.show')->with('recipe', $recipeWithTag);
+    }
+
 }

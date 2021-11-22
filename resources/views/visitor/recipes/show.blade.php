@@ -38,7 +38,7 @@
    </head>
    <body>
       <!-- banner bg main start -->
-      <div class="banner_bg_main">
+      <div class="banner_bg_main mb-3">
          <!-- header top section start -->
          <div class="container">
             <div class="header_section_top">
@@ -128,74 +128,72 @@
             </div>
          </div>
          <!-- header section end -->
-         <!-- banner section start -->
-         <div class="banner_section layout_padding">
-            <div class="container">
-               <div id="my_slider" class="carousel slide" data-ride="carousel">
-                  <div class="carousel-inner">
-                     <div class="carousel-item active">
-                        <div class="row">
-                           <div class="col-sm-12">
-                              <h1 class="banner_taital">Discover <br>new recipes everyday</h1>
-                              <div class="buynow_bt"><a href="#">View Recipes</a></div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="carousel-item">
-                        <div class="row">
-                           <div class="col-sm-12">
-                              <h1 class="banner_taital">Discover <br>new recipes everyday</h1>
-                              <div class="buynow_bt"><a href="#">View Recipes</a></div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <a class="carousel-control-prev" href="#my_slider" role="button" data-slide="prev">
-                  <i class="fa fa-angle-left"></i>
-                  </a>
-                  <a class="carousel-control-next" href="#my_slider" role="button" data-slide="next">
-                  <i class="fa fa-angle-right"></i>
-                  </a>
-               </div>
-            </div>
-         </div>
-         <!-- banner section end -->
+                  <!-- banner section start -->
+                  <div class="banner_section layout_padding">
+                    <div class="container">
+                       <div id="my_slider" class="carousel slide" data-ride="carousel">
+                          <div class="carousel-inner">
+                             <div class="carousel-item active">
+                                <div class="row">
+                                   <div class="col-sm-12">
+                                      <h1 class="banner_taital">Discover <br>new recipes everyday</h1>
+                                      <div class="buynow_bt"><a href="#">View Recipes</a></div>
+                                   </div>
+                                </div>
+                             </div>
+                             <div class="carousel-item">
+                                <div class="row">
+                                   <div class="col-sm-12">
+                                      <h1 class="banner_taital">Discover <br>new recipes everyday</h1>
+                                      <div class="buynow_bt"><a href="#">View Recipes</a></div>
+                                   </div>
+                                </div>
+                             </div>
+                          </div>
+                          <a class="carousel-control-prev" href="#my_slider" role="button" data-slide="prev">
+                          <i class="fa fa-angle-left"></i>
+                          </a>
+                          <a class="carousel-control-next" href="#my_slider" role="button" data-slide="next">
+                          <i class="fa fa-angle-right"></i>
+                          </a>
+                       </div>
+                    </div>
+                 </div>
+                 <!-- banner section end -->
       </div>
       <!-- banner bg main end -->
       <!-- Recipe section start -->
-      <div class="fashion_section">
-         <div id="main_slider" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-               <div class="carousel-item active">
-                  <div class="container">
-                     <h1 class="fashion_taital">Today's recipes:</h1>
-                     <div class="fashion_section_2">
-                        <div class="row">
-                           @foreach ($recipes as $recipe)                                                   
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="shirt_text">{{$recipe->name}}</h4>
-                                 <p class="price_text">Budget  <span style="color: #262626;">$ 30</span></p>
-                                 <div class="tshirt_img"><img src="{{$recipe->images[0]->path}}"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="{{route('visitor.recipes.show', ['recipe' => $recipe->id])}}">More details</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                           @endforeach                            
-                        </div>
-                       {{ $recipes->links() }}
-                     </div>
-                  </div>
-               </div>
+      <div class="card mx-3 my-3 " >
+        <div class="row g-0">
+          <div class="col-lg-5 px-4 py-2">
+            <img src="{{$recipe->images[0]->path}}" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-lg-7">
+            <div class="card-body">
+              <h1 class="card-title fashion_taital">{{$recipe->name}}</h1>
+              <p class="card-text">{!!$recipe->description!!}</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
-         <!-- <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
-            <i class="fa fa-angle-left"></i>
-            </a>
-            <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
-            <i class="fa fa-angle-right"></i>
-            </a> -->
-         </div>
+            <div class="card-body">
+                <h5>Display Comments</h5>
+                @include('visitor.recipes.comments', ['comments' => $recipe->comments, 'recipe_id' => $recipe->id])
+                <hr />
+            </div>
+            <div class="card-body">
+                <h5>Leave a comment</h5>
+                <form method="post" action="{{ route('visitor.comment.store') }}">
+                    @csrf
+                    <div class="form-group">
+                        <input type="text" name="comment" class="form-control" />
+                        <input type="hidden" name="recipe_id" value="{{ $recipe->id }}" />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-sm btn-outline-danger py-0" style="font-size: 0.8em;" value="Add Comment" />
+                    </div>
+                </form>
+               </div>
+          </div>
+        </div>
       </div>
       <!-- Recipe section end -->     
       <!-- footer section start -->

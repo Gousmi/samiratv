@@ -77,10 +77,10 @@
             $('.select2bs4').select2({
                 theme: 'bootstrap4'
             })
-
-            bsCustomFileInput.init()
+            $('#description').summernote();
+            bsCustomFileInput.init();
         })
-        $('#description').summernote()
+
         
     </script>  
 @endsection
