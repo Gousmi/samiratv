@@ -184,8 +184,12 @@
                <h5>Leave a comment</h5>
                <form method="post" action="{{ route('visitor.comment.store') }}">
                   @csrf
-                  <div class="form-group">
-                     <input type="text" name="comment" class="form-control" />
+                  <div class="form-group form-inline">
+                     <label for="user_name">Name: </label><input type="text" id="user_name" name="user_name" class="form-control form-control-sm"/>
+                     <label for="user_email">Email: </label><input type="text" id="user_email" name="user_email" class="form-control form-control-sm"/>
+                  </div>
+                  <div class="form-group"> 
+                     <input type="text" name="comment" class="form-control" placeholder="Write your comment here"/>
                      <input type="hidden" name="recipe_id" value="{{ $recipe->id }}" />
                   </div>
                   <div class="form-group">

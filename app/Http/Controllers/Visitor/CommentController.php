@@ -15,7 +15,11 @@ class CommentController extends Controller
         $comment = new Comment;
 
         $comment->comment = $request->comment;
+        
+        $comment->user_name = $request->user_name;
 
+        $comment->user_email = $request->user_email;
+        
         $recipe = Recipe::find($request->recipe_id);
 
         $recipe->comments()->save($comment);
@@ -28,6 +32,10 @@ class CommentController extends Controller
         $reply = new Comment();
 
         $reply->comment = $request->get('comment');
+
+        $reply->user_name = $request->get('user_name');
+
+        $reply->user_email = $request->get('user_email');
 
         $reply->parent_id = $request->get('comment_id');
 
