@@ -174,25 +174,24 @@
               <p class="card-text">{!!$recipe->description!!}</p>
               <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
-            <div class="card-body">
-                <h5>Display Comments</h5>
-                @include('visitor.recipes.comments', ['comments' => $recipe->comments, 'recipe_id' => $recipe->id])
-                <hr />
-            </div>
-            <div class="card-body">
-                <h5>Leave a comment</h5>
-                <form method="post" action="{{ route('visitor.comment.store') }}">
-                    @csrf
-                    <div class="form-group">
-                        <input type="text" name="comment" class="form-control" />
-                        <input type="hidden" name="recipe_id" value="{{ $recipe->id }}" />
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" class="btn btn-sm btn-outline-danger py-0" style="font-size: 0.8em;" value="Add Comment" />
-                    </div>
-                </form>
-               </div>
           </div>
+        </div>
+        <div class="row">
+            <div class="card-footer col-lg-12">
+               <h5>Display Comments</h5>
+               @include('visitor.recipes.comments', ['comments' => $recipe->comments, 'recipe_id' => $recipe->id])
+               <hr />
+               <h5>Leave a comment</h5>
+               <form method="post" action="{{ route('visitor.comment.store') }}">
+                  @csrf
+                  <div class="form-group">
+                     <input type="text" name="comment" class="form-control" />
+                     <input type="hidden" name="recipe_id" value="{{ $recipe->id }}" />
+                  </div>
+                  <div class="form-group">
+                     <input type="submit" class="btn btn-sm btn-outline-danger py-0" style="font-size: 0.8em;" value="Add Comment" />
+                  </div>
+            </div>
         </div>
       </div>
       <!-- Recipe section end -->     
