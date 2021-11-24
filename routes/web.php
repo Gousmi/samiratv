@@ -58,6 +58,8 @@ Route::get('recipes/{recipe}/show', [App\Http\Controllers\Visitor\RecipeControll
 //comments and replies
 Route::post('comment/store', [App\Http\Controllers\Visitor\CommentController::class, 'store'])->name('comment.store');
 Route::post('reply/store', [App\Http\Controllers\Visitor\CommentController::class, 'replyStore'])->name('reply.store');
+Route::get('recipes/{recipe}/comment/count', [App\Http\Controllers\Visitor\CommentController::class, 'commentCount'])->name('comment.count');
+
 
 });
 // OLD ROUTES

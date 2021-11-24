@@ -177,10 +177,10 @@
           </div>
         </div>
         <div class="row">
-            <div class="card-footer col-lg-12">
-               <h5>Display Comments</h5>
+            <div class="card-body col-lg-12">
+               <h2>Comments({{$comments_number}})</h2>
                @include('visitor.recipes.comments', ['comments' => $recipe->comments, 'recipe_id' => $recipe->id])
-               <hr />
+               <hr/>
                <h5>Leave a comment</h5>
                <form method="post" action="{{ route('visitor.comment.store') }}">
                   @csrf
@@ -193,7 +193,7 @@
                      <input type="hidden" name="recipe_id" value="{{ $recipe->id }}" />
                   </div>
                   <div class="form-group">
-                     <input type="submit" class="btn btn-sm btn-outline-danger py-0" style="font-size: 0.8em;" value="Add Comment" />
+                     <input type="submit" class="btn btn-sm btn-outline-warning py-0" style="font-size: 0.8em;" value="Send" />
                   </div>
             </div>
         </div>

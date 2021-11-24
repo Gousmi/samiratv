@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Visitor;
 use App\Http\Controllers\Controller;
 use App\Models\Image;
 use App\Models\Recipe;
+use App\Models\Comment;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -31,7 +32,9 @@ class RecipeController extends Controller
     public function show(Recipe $recipe)
     {
         $recipeWithTag = Recipe::with('tags')->find($recipe->id);
-        return view('visitor.recipes.show')->with('recipe', $recipeWithTag);
+        $nb = Comment::all()->where('commentable_id', $recipe->id)->count();
+       
+        return view('visitor.recipes.show')->with('recipe', $recipeWithTag)->with('comments_number', $nb);
     }
 
 }
