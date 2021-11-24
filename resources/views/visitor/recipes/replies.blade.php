@@ -4,15 +4,15 @@
     <div class="card">
         <div class="card-body border-right-0">
             <div class="card-title">
-                <p><h3>{{ $reply->user_name }} says:</h3></p>
+                <i class="fas fa-user d-inline mr-2"></i><h3 class="d-inline">{{ $reply->user_name }} says:</h3>
             </div>
             <div class="card-text">
                 <p>{{ $reply->comment }}</p>
             </div>
-            <a class="btn text-warning" role="button" data-toggle="collapse" href="#collapseReply" aria-expanded="false" aria-controls="collapseReply">reply</a>
+            <a class="btn text-warning" role="button" data-toggle="collapse" href="#collapseReply{{$reply->id}}" aria-expanded="false" aria-controls="collapseReply{{$reply->id}}">reply</a>
         </div>    
     
-        <div class="collapse ml-4 mr-4" id="collapseReply">
+        <div class="collapse ml-4 mr-4" id="collapseReply{{$reply->id}}">
             <form method="post" action="{{ route('visitor.reply.store') }}">
                 @csrf
                 <div class="form-group form-inline">

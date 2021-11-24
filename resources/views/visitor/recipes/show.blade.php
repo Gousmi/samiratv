@@ -16,6 +16,7 @@
       <!-- bootstrap css -->
       <link rel="stylesheet" type="text/css" href="{{asset('css/visitor//bootstrap.min.css')}}">
       <!-- style css -->
+      <link rel="stylesheet" href="{{asset('css/app.css')}}">
       <link rel="stylesheet" type="text/css" href="{{asset('css/visitor//style.css')}}">
       <!-- Responsive-->
       <link rel="stylesheet" href="{{asset('css/visitor//responsive.css')}}">
