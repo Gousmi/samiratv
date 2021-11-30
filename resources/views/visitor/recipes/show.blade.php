@@ -18,6 +18,8 @@
       <!-- style css -->
       <link rel="stylesheet" href="{{asset('css/app.css')}}">
       <link rel="stylesheet" type="text/css" href="{{asset('css/visitor//style.css')}}">
+      <!-- Ratings css -->
+      <link rel="stylesheet" href="{{asset('css/visitor//ratings.css')}}">
       <!-- Responsive-->
       <link rel="stylesheet" href="{{asset('css/visitor//responsive.css')}}">
       <!-- fevicon -->
@@ -174,6 +176,28 @@
               <h1 class="card-title fashion_taital">{{$recipe->name}}</h1>
               <p class="card-text">{!!$recipe->description!!}</p>
               <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              <h2 class="mt-4">Rate this product :</h2>
+              <form method="post" action="{{ route('visitor.rating.store') }}">
+               @csrf
+                  <div class="rating-css row">
+                     <div class="star-icon col-lg-4">
+                        <input type="radio" value="1" name="rating" checked id="rating1">
+                        <label for="rating1" class="fa fa-star"></label>
+                        <input type="radio" value="2" name="rating" id="rating2">
+                        <label for="rating2" class="fa fa-star"></label>
+                        <input type="radio" value="3" name="rating" id="rating3">
+                        <label for="rating3" class="fa fa-star"></label>
+                        <input type="radio" value="4" name="rating" id="rating4">
+                        <label for="rating4" class="fa fa-star"></label>
+                        <input type="radio" value="5" name="rating" id="rating5">
+                        <label for="rating5" class="fa fa-star"></label>
+                        <input type="hidden" name="recipe_id" value="{{$recipe->id}}">
+                     </div>                    
+                     <div class="col-lg-1">
+                        <button type="submit" class="btn btn-lg btn-outline-rating">Submit</button>
+                     </div>
+                  </div>
+               </form>
             </div>
           </div>
         </div>
@@ -182,12 +206,12 @@
                <h2>Comments({{$comments_number}})</h2>
                @include('visitor.recipes.comments', ['comments' => $recipe->comments, 'recipe_id' => $recipe->id])
                <hr/>
-               <h5>Leave a comment</h5>
+               <h3>Leave a comment</h3>
                <form method="post" action="{{ route('visitor.comment.store') }}">
                   @csrf
                   <div class="form-group form-inline">
-                     <label for="user_name">Name: </label><input type="text" id="user_name" name="user_name" class="form-control form-control-sm"/>
-                     <label for="user_email">Email: </label><input type="text" id="user_email" name="user_email" class="form-control form-control-sm"/>
+                     <label for="user_name">Name: </label><input type="text" id="user_name" name="user_name" class="form-control ml-2 mr-2 form-control-sm"/>
+                     <label for="user_email">Email: </label><input type="text" id="user_email" name="user_email" class="form-control ml-2 mr-2 form-control-sm"/>
                   </div>
                   <div class="form-group"> 
                      <input type="text" name="comment" class="form-control" placeholder="Write your comment here"/>

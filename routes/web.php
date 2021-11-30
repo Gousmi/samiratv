@@ -47,21 +47,21 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','prefix'=>'admin','as'=>
     Route::post('images/store', [App\Http\Controllers\Admin\ImageController::class, 'store'])->name('images.store');
     Route::delete('images/{image}', [App\Http\Controllers\Admin\ImageController::class, 'destroy'])->name('images.destroy');
 
-});
+        });
 
 //visitor grouped routes
 Route::group(['namespace'=>'App\Http\Controllers\Visitor','prefix'=>'visitor','as'=>'visitor.'], function(){
-//recipes 
-Route::get('index', [App\Http\Controllers\Visitor\RecipeController::class, 'index'])->name('recipes.index');
-Route::get('recipes/{recipe}/show', [App\Http\Controllers\Visitor\RecipeController::class, 'show'])->name('recipes.show');
+    //recipes 
+    Route::get('index', [App\Http\Controllers\Visitor\RecipeController::class, 'index'])->name('recipes.index');
+    Route::get('recipes/{recipe}/show', [App\Http\Controllers\Visitor\RecipeController::class, 'show'])->name('recipes.show');
+    //comments and replies
+    Route::post('comment/store', [App\Http\Controllers\Visitor\CommentController::class, 'store'])->name('comment.store');
+    Route::post('reply/store', [App\Http\Controllers\Visitor\CommentController::class, 'replyStore'])->name('reply.store');
+    Route::get('recipes/{recipe}/comment/count', [App\Http\Controllers\Visitor\CommentController::class, 'commentCount'])->name('comment.count');
+    //ratings
+    Route::post('rating/store', [App\Http\Controllers\Visitor\RatingController::class, 'store'])->name('rating.store');
 
-//comments and replies
-Route::post('comment/store', [App\Http\Controllers\Visitor\CommentController::class, 'store'])->name('comment.store');
-Route::post('reply/store', [App\Http\Controllers\Visitor\CommentController::class, 'replyStore'])->name('reply.store');
-Route::get('recipes/{recipe}/comment/count', [App\Http\Controllers\Visitor\CommentController::class, 'commentCount'])->name('comment.count');
-
-
-});
+        });
 // OLD ROUTES
 //recipes
 //Route::resource('recipes', RecipeController::class);

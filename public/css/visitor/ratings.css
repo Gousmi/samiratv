@@ -1,0 +1,61 @@
+/* rating */
+.rating-css div {
+    color: #fd8953;
+    font-size: 30px;
+    font-family: sans-serif;
+    font-weight: 800;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 20px 0;
+  }
+  .rating-css input {
+    display: none;
+  }
+  .rating-css input + label {
+    font-size: 30px;
+    text-shadow: 0.5px 0.5px 0 #f26522;
+    cursor: pointer;
+  }
+  .rating-css input:checked + label ~ label {
+    color: #b4afaf;
+  }
+  .rating-css label:active {
+    transform: scale(0.8);
+    transition: 0.3s ease;
+  }
+
+  .btn-outline-rating {
+    color: #fd8953;
+    background-color: transparent;
+    background-image: none;
+    border-color: #fd8953;
+  }
+
+  .btn-outline-rating:hover {
+    color: #fff;
+    background-color: #fd8953;
+    border-color: #fd8953;
+  }
+  
+  .btn-outline-rating:focus, .btn-outline-rating.focus {
+    box-shadow: 0 0 0 0.2rem rgba(253, 137, 83, 0.5);
+  }
+  
+  .btn-outline-rating.disabled, .btn-outline-rating:disabled {
+    color: #fd8953;
+    background-color: transparent;
+  }
+  
+  .btn-outline-rating:not(:disabled):not(.disabled):active, .btn-outline-rating:not(:disabled):not(.disabled).active,
+  .show > .btn-outline-rating.dropdown-toggle {
+    color: #fff;
+    background-color: #fd8953;
+    border-color: #fd8953;
+  }
+  
+  .btn-outline-rating:not(:disabled):not(.disabled):active:focus, .btn-outline-rating:not(:disabled):not(.disabled).active:focus,
+  .show > .btn-outline-rating.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(253, 137, 83, 0.5);
+  }
+
+/* End of Star Rating */
