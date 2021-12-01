@@ -176,25 +176,34 @@
               <h1 class="card-title fashion_taital">{{$recipe->name}}</h1>
               <p class="card-text">{!!$recipe->description!!}</p>
               <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-              <h2 class="mt-4">Rate this product :</h2>
+              <h2 class="mt-4">Rate this recipe :</h2>
               <form method="post" action="{{ route('visitor.rating.store') }}">
                @csrf
                   <div class="rating-css row">
                      <div class="star-icon col-lg-4">
-                        <input type="radio" value="1" name="rating" checked id="rating1">
+                        <input type="radio" value="1" @if (floor($final_rating)==1)
+                          checked @endif name="rating" id="rating1">
                         <label for="rating1" class="fa fa-star"></label>
-                        <input type="radio" value="2" name="rating" id="rating2">
+                        <input type="radio" value="2" @if (floor($final_rating)==2)
+                          checked @endif name="rating" id="rating2">
                         <label for="rating2" class="fa fa-star"></label>
-                        <input type="radio" value="3" name="rating" id="rating3">
+                        <input type="radio" value="3" @if (floor($final_rating)==3)
+                        checked @endif name="rating" id="rating3">
                         <label for="rating3" class="fa fa-star"></label>
-                        <input type="radio" value="4" name="rating" id="rating4">
+                        <input type="radio" value="4" @if (floor($final_rating)==4)
+                        checked @endif name="rating" id="rating4">
                         <label for="rating4" class="fa fa-star"></label>
-                        <input type="radio" value="5" name="rating" id="rating5">
+                        <input type="radio"  value="5" @if (floor($final_rating)==5)
+                        checked @endif name="rating" id="rating5">
                         <label for="rating5" class="fa fa-star"></label>
                         <input type="hidden" name="recipe_id" value="{{$recipe->id}}">
                      </div>                    
                      <div class="col-lg-1">
                         <button type="submit" class="btn btn-lg btn-outline-rating">Submit</button>
+                     </div>
+                     <div class="col-lg-7">
+                        <p>Rating :{{$final_rating}}</p>
+                        <p>{{$rating_message}}</p>
                      </div>
                   </div>
                </form>

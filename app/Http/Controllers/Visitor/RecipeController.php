@@ -33,8 +33,31 @@ class RecipeController extends Controller
     {
         $recipeWithTag = Recipe::with('tags')->find($recipe->id);
         $nb = Comment::all()->where('commentable_id', $recipe->id)->count();
+
+        if (count($recipe->ratings) != Null )
+        {
+            $nb_rating = count($recipe->ratings);
+            $final_rating =0;
+
+            foreach ($recipe->ratings as $rating )
+            {
+                $final_rating = $final_rating+$rating->rating; 
+            }
+
+            $final_rating =  number_format($final_rating/$nb_rating, 1);
+
+            $rating_message = $nb_rating . ' total ratings';
+        }
+        else
+        {
+            $final_rating = 0;
+            $rating_message = "not ratings yet";
+        }
        
-        return view('visitor.recipes.show')->with('recipe', $recipeWithTag)->with('comments_number', $nb);
+        return view('visitor.recipes.show')->with('recipe', $recipeWithTag)
+                                           ->with('comments_number', $nb)
+                                           ->with('final_rating', $final_rating)
+                                           ->with('rating_message', $rating_message);
     }
 
 }
