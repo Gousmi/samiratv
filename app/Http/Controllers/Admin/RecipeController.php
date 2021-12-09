@@ -106,7 +106,9 @@ class RecipeController extends Controller
                 $new_image->name = $new_name;
              
                 $destinationPath = public_path('/images/recipes/');
-                $img = IntImage::make($image->path())->save($destinationPath.'/'.$new_name);;
+                $img = IntImage::make($image->path())->resize(null, 700, function($constraint){
+                    $constraint->aspectRatio();
+                    })->crop(700,700)->save($destinationPath.'/'.$new_name);;
                 $new_image->path = '/images/recipes/' . $new_name;
                 $new_image->save();
                 //thumbnail
@@ -116,8 +118,8 @@ class RecipeController extends Controller
                 $new_thumbnail->name = $new_name;
              
                 $destinationPath = public_path('/images/recipes/thumbnails/');
-                $thumb = IntImage::make($thumbnail->path())->resize(75, 75, function ($constraint) {
-                    $constraint->aspectRatio();})->save($destinationPath.'/'.$new_name);
+                $thumb = IntImage::make($thumbnail->path())->resize(null, 70, function ($constraint) {
+                    $constraint->aspectRatio();})->crop(70,70)->save($destinationPath.'/'.$new_name);
                 $new_thumbnail->path = '/images/recipes/thumbnails/' . $new_name;
                 $new_thumbnail->is_thumb = '1' ; 
                 $new_thumbnail->save();
