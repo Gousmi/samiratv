@@ -41,6 +41,8 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','prefix'=>'admin','as'=>
     //recipes
     Route::get('recipes/{recipe}/editimage', [App\Http\Controllers\Admin\RecipeController::class, 'editImage'])->name('recipes.editimage');
     Route::resource('recipes', 'RecipeController');
+    //Ingredients
+    Route::resource('ingredients', 'IngredientController');
     //tags
     Route::resource('tags', 'TagController');
     //images
