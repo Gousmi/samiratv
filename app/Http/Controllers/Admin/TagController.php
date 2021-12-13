@@ -17,7 +17,7 @@ class TagController extends Controller
     public function index()
     {
         $tags = DB::table('tags')->get();
-        return view('admin.tags.show')->with('tags', $tags);
+        return view('admin.tags.index')->with('tags', $tags);
     }
 
     /**

@@ -27,14 +27,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('test', function(){ return view('layouts/visitor/main');});
+Route::get('/admin', [App\Http\Controllers\Admin\RecipeController::class, 'index'])->name('admin.home');
 
-//Route::get('recipes/create', [App\Http\Controllers\RecipeController::class, 'create']);
-
-/* Route::prefix('admin')->group(function(){
-    Route::resource('recipes', RecipeController::class);
-    Route::resource('tags', TagController::class);
-}); */
 
 // Admin grouped routes
 Route::group(['namespace'=>'App\Http\Controllers\Admin','prefix'=>'admin','as'=>'admin.'], function(){

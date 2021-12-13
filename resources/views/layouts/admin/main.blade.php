@@ -71,6 +71,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           <li class="nav-item">
+            <a href="{{route('admin.ingredients.index')}}" class="nav-link">
+              <i class="nav-icon fas fa-carrot"></i>
+              <p>
+                Ingredient
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="{{route('admin.tags.index')}}" class="nav-link">
               <i class="nav-icon fas fa-tags"></i>
               <p>

@@ -28,7 +28,7 @@ class RecipeController extends Controller
             $recipe->tagsList = $recipe->tags;
         }
         */
-        return view('admin.recipes.show')->with('recipes', $recipes);
+        return view('admin.recipes.index')->with('recipes', $recipes);
     }
 
     /**
@@ -116,7 +116,7 @@ class RecipeController extends Controller
                 $new_thumbnail->recipe_id = $recipe->id;
                 $thumbnail = $image_to_upload;
                 $new_thumbnail->name = $new_name;
-             
+            
                 $destinationPath = public_path('/images/recipes/thumbnails/');
                 $thumb = IntImage::make($thumbnail->path())->resize(null, 70, function ($constraint) {
                     $constraint->aspectRatio();})->crop(70,70)->save($destinationPath.'/'.$new_name);

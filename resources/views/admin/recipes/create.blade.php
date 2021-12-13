@@ -34,9 +34,27 @@
                 </select>
             </div>
             <div class="form-group">
+                <label>Ingredients:</label>
+                <div class="form-row">
+                    <div class="col-7">
+                      <input type="text" class="form-control" placeholder="name">
+                    </div>
+                    <div class="col">
+                      <input type="text" class="form-control" placeholder="Quantity">
+                    </div>
+                    <div class="col">
+                      <input type="text" class="form-control" placeholder="Unit">
+                    </div>
+                  </div>
+                <button type="button" style="background:none; border:none;">
+                <i class="fas fa-plus"></i>
+                </button>
+            </div>
+            <div class="form-group">
                 <label>Description</label>
                 <textarea class="form-control" rows="3" name="description" id="description" placeholder="Enter the description here"></textarea>
             </div>
+            
             <div class="form-group">
                 <label>Tags</label>
                 <select class="select2" multiple="multiple" data-placeholder="Select a tag" name="tag[]" style="width: 100%;">

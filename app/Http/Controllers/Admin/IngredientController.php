@@ -16,7 +16,7 @@ class IngredientController extends Controller
     public function index()
     {
         $ingredients = DB::table('ingredients')->get();
-        return view('admin.ingredients.show')->with('ingredients', $ingredients);
+        return view('admin.ingredients.index')->with('ingredients', $ingredients);
     }
 
     /**
@@ -46,6 +46,8 @@ class IngredientController extends Controller
         $Ingredient = new Ingredient();
 
         $Ingredient->name = $request->input('name');
+
+        $Ingredient->type = $request->input('type');
 
         $Ingredient->save();
 

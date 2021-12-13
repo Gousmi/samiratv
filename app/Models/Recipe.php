@@ -13,6 +13,10 @@ class Recipe extends Model
     {
         return $this->belongsToMany(Tag::class);
     }
+    public function ingredients()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
 
     public function images()
     {
