@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Image;
 use App\Models\Recipe;
 use App\Models\Tag;
+use App\Models\Ingredient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image as IntImage;
@@ -39,8 +40,9 @@ class RecipeController extends Controller
     public function create()
     {
         $tags = Tag::all();
+        $ingredients = Ingredient::all();
 
-        return view('admin.recipes.create')->with('tags', $tags);
+        return view('admin.recipes.create')->with('tags', $tags)->with('ingredients', $ingredients);
     }
 
     /**
@@ -64,6 +66,21 @@ class RecipeController extends Controller
         $recipe->category = $request->input('category');
         $recipe->description = $request->input('description');
         $recipe->save();
+
+        // Ingredients
+            //check
+            if($request->has('ingredient'))
+            {   
+                $ingredients = $request->input('ingredient');
+                $quantities = $request->input('quantity');
+                $arr = [];
+                for($i=0; $i < count($ingredients); $i++)
+                {
+                    $arr[$i] = [1 => ['quantity' => $quantities[$i]]];
+                }
+                
+                $recipe->ingredients()->sync($arr);
+            }
         
         // tags
             if ($request->has('tag'))
