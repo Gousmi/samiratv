@@ -50,7 +50,7 @@
                     </div>
                 </div>
             </div>
-            <div class="text-center">
+            <div class="text-center" id="divAdd" >
                 <button type="button" style="background:none; border:none;" id="btnAddIng">
                  <i class="fas fa-plus fa-lg"></i>
                 </button>
@@ -96,9 +96,11 @@
             //Initialize Select2 Elements
             $('.select2').select2()
             $('.ingredient-select2').select2()
-            $('#btnAddIng').click(function(){
-                    var newDiv = $('<div class="row"><div class="col-md-8"><div class="form-group"><select class="form-control select2bs4" name="name[]">@foreach ($ingredients as $ingredient)<option value="{{$ingredient->name}}">{{$ingredient->name}}</option>    @endforeach</select></div></div><div class="col-md-2"><div class="form-group"><input type="text" class="form-control" name="quantity[]" placeholder="Quantity"></div></div></div>');
-                     $('#btnAddIng').before(newDiv);
+            $('#btnAddIng').click(function(){var newDiv = $('<div class="row"><div class="col-md-8"><div class="form-group"><select class="form-control select2bs4" name="ingredient[]">@foreach ($ingredients as $ingredient)<option value="{{$ingredient->id}}">{{$ingredient->name}}</option>    @endforeach</select></div></div><div class="col-md-2"><div class="form-group"><input type="text" class="form-control" name="quantity[]" placeholder="Quantity"></div></div></div>');
+                     $('#divAdd').before(newDiv);
+                     $('.select2bs4').select2({
+                theme: 'bootstrap4'
+                    })
                 });
             //Initialize Select2 Elements
             $('.select2bs4').select2({
