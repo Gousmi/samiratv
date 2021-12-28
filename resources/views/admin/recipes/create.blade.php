@@ -34,7 +34,7 @@
                 </select>
             </div>
             <label>Ingredients:</label>
-            <div class="row">
+            <div class="row ing">
                 <div class="col-md-8">
                     <div class="form-group">
                         <select class="form-control select2bs4" name="ingredient[]">
@@ -48,6 +48,11 @@
                     <div class="form-group">
                         <input type="text" class="form-control" name="quantity[]" placeholder="Quantity">
                     </div>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class ="btnRemoveIng" style="background:none; border:none;">
+                        <i class="fas fa-minus fa-md"></i>
+                    </button>
                 </div>
             </div>
             <div class="text-center" id="divAdd" >
@@ -95,13 +100,20 @@
         $(document).ready(function () {
             //Initialize Select2 Elements
             $('.select2').select2()
-            $('.ingredient-select2').select2()
-            $('#btnAddIng').click(function(){var newDiv = $('<div class="row"><div class="col-md-8"><div class="form-group"><select class="form-control select2bs4" name="ingredient[]">@foreach ($ingredients as $ingredient)<option value="{{$ingredient->id}}">{{$ingredient->name}}</option>    @endforeach</select></div></div><div class="col-md-2"><div class="form-group"><input type="text" class="form-control" name="quantity[]" placeholder="Quantity"></div></div></div>');
+            $('#btnAddIng').click(function(){var newDiv = $('<div class="row ing"><div class="col-md-8"><div class="form-group"><select class="form-control select2bs4" name="ingredient[]">@foreach ($ingredients as $ingredient)<option value="{{$ingredient->id}}">{{$ingredient->name}}</option>    @endforeach</select></div></div><div class="col-md-2"><div class="form-group"><input type="text" class="form-control" name="quantity[]" placeholder="Quantity"></div></div>            <div class="col-md-2"><button type="button" class ="btnRemoveIng" style="background:none; border:none;"><i class="fas fa-minus fa-md"></i></button></div></div>');
                      $('#divAdd').before(newDiv);
                      $('.select2bs4').select2({
                 theme: 'bootstrap4'
                     })
+                    $('.btnRemoveIng').click(function(){
+                $(this).closest('.ing').remove();
+
+            });
                 });
+         $('.btnRemoveIng').click(function(){
+                $(this).closest('.ing').remove();
+
+            });
             //Initialize Select2 Elements
             $('.select2bs4').select2({
                 theme: 'bootstrap4'

@@ -10,6 +10,6 @@ class Ingredient extends Model
     use HasFactory;
     public function recipes()
     {
-        return $this->belongsToMany(Recipe::class);
+        return $this->belongsToMany(Recipe::class)->withPivot('quantity');
     }
 }

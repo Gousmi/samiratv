@@ -53,6 +53,41 @@
               <option @if ($recipe->category == "Dessert") {{'selected'}} @endif>Dessert</option>
           </select>
           </div>
+        <label>Ingredients:</label>
+        @foreach ($recipe->ingredients as $recipe_ingredient) 
+        <div class="row ing">
+            <div class="col-md-8">
+                <div class="form-group">
+                    <select class="form-control select2bs4" name="ingredient[]">
+                        @foreach ($ingredients as $ingredient)
+                            <option 
+                                        @if ($recipe_ingredient->name == $ingredient->name)
+                                            {{'selected'}}
+                                        @endif
+                                value="{{$ingredient->id}}">{{$ingredient->name}}
+                            </option>    
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="quantity[]" placeholder="Quantity" value="{{$recipe_ingredient->pivot->quantity}}">
+                </div>
+            </div>
+            <div class="col-md-2">
+                <button type="button" class ="btnRemoveIng" style="background:none; border:none;">
+                    <i class="fas fa-minus fa-md"></i>
+                </button>
+            </div>
+            
+        </div>            
+        @endforeach
+        <div class="text-center" id="divAdd" >
+            <button type="button" style="background:none; border:none;" id="btnAddIng">
+                <i class="fas fa-plus fa-lg"></i>
+            </button>
+        </div>
         <div class="form-group">
             <label>Description</label>
             <textarea class="form-control" rows="3" name="description" id="description" placeholder="Enter the description here"
@@ -105,11 +140,28 @@
 
             //Initialize Select2 Elements
             $('.select2').select2()
+
+            $('#btnAddIng').click(function(){var newDiv = $('<div class="row ing"><div class="col-md-8"><div class="form-group"><select class="form-control select2bs4" name="ingredient[]">@foreach ($ingredients as $ingredient)<option value="{{$ingredient->id}}">{{$ingredient->name}}</option>    @endforeach</select></div></div><div class="col-md-2"><div class="form-group"><input type="text" class="form-control" name="quantity[]" placeholder="Quantity"></div></div>            <div class="col-md-2"><button type="button" class ="btnRemoveIng" style="background:none; border:none;"><i class="fas fa-minus fa-md"></i></button></div></div>');
+                     $('#divAdd').before(newDiv);
+                     $('.select2bs4').select2({
+                theme: 'bootstrap4'
+                    })
+                    $('.btnRemoveIng').click(function(){
+                $(this).closest('.ing').remove();
+
+            });
+                });
+         $('.btnRemoveIng').click(function(){
+                $(this).closest('.ing').remove();
+
+            });
         
             //Initialize Select2 Elements
             $('.select2bs4').select2({
                 theme: 'bootstrap4'
             }) 
+            $('#description').summernote();
+            bsCustomFileInput.init();
             /* $('#select2').val('3').trigger('change'); */
         })
 </script>

@@ -168,10 +168,11 @@ class RecipeController extends Controller
     public function edit(Recipe $recipe)
     {   
      /*    $recipe = DB::table('recipes')->find($recipe); */
-        $recipeWithTag = Recipe::with('tags')->find($recipe->id);
+        $recipeWithAttributes = Recipe::with('tags', 'ingredients')->find($recipe->id);
         $tags = Tag::all();
+        $ingredients = Ingredient::all();
             //dd($recipeWithTag);
-        return view('admin.recipes.edit')->with('recipe', $recipeWithTag)->with('tags', $tags);
+        return view('admin.recipes.edit')->with('recipe', $recipeWithAttributes)->with('tags', $tags)->with('ingredients', $ingredients);
     }
 
     /**
