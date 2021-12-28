@@ -207,7 +207,7 @@ class RecipeController extends Controller
                 $arr[$ingredients[$i]] = ['quantity' => $quantities[$i]];
             }
             
-            $recipe->ingredients()->sync($arr, false);
+            $recipe->ingredients()->sync($arr);
         }
 
         if ($request->has('tag'))
