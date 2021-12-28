@@ -195,6 +195,21 @@ class RecipeController extends Controller
         $recipe->category = $request->input('category');
         $recipe->description = $request->input('description');
 
+        // Ingredients
+            //check
+        if($request->has('ingredient'))
+        {   
+            $ingredients = $request->input('ingredient');
+            $quantities = $request->input('quantity');
+            $arr = [];
+            for($i=0; $i < count($ingredients); $i++)
+            {
+                $arr[$ingredients[$i]] = ['quantity' => $quantities[$i]];
+            }
+            
+            $recipe->ingredients()->sync($arr, false);
+        }
+
         if ($request->has('tag'))
         {
             $recipe->tags()->sync($request->input('tag'));
