@@ -76,10 +76,10 @@ class RecipeController extends Controller
                 $arr = [];
                 for($i=0; $i < count($ingredients); $i++)
                 {
-                    $arr[$i] = [1 => ['quantity' => $quantities[$i]]];
+                    $arr[$ingredients[$i]] = ['quantity' => $quantities[$i]];
                 }
                 
-                $recipe->ingredients()->sync($arr);
+                $recipe->ingredients()->sync($arr, false);
             }
         
         // tags
