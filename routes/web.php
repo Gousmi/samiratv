@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('visitor.recipes.index');
 });
 
 Auth::routes();
@@ -31,7 +31,7 @@ Route::get('/admin', [App\Http\Controllers\Admin\RecipeController::class, 'index
 
 
 // Admin grouped routes
-Route::group(['namespace'=>'App\Http\Controllers\Admin','prefix'=>'admin','as'=>'admin.'], function(){
+Route::group(['namespace'=>'App\Http\Controllers\Admin','prefix'=>'admin','as'=>'admin.','middleware'=>['role:admin','auth']], function(){
     //recipes
     Route::get('recipes/{recipe}/editimage', [App\Http\Controllers\Admin\RecipeController::class, 'editImage'])->name('recipes.editimage');
     Route::resource('recipes', 'RecipeController');
@@ -58,6 +58,8 @@ Route::group(['namespace'=>'App\Http\Controllers\Visitor','prefix'=>'visitor','a
     Route::post('rating/store', [App\Http\Controllers\Visitor\RatingController::class, 'store'])->name('rating.store');
 
         });
+
+Route::get('/roles', [App\Http\Controllers\PermissionController::class,'Permission']);
 // OLD ROUTES
 //recipes
 //Route::resource('recipes', RecipeController::class);

@@ -6,7 +6,9 @@
 <!-- ***** DATA TABLE ****-->
 <div class="card m-3">
     <div class="card-header">
+    @role('admin')
     <a class="btn btn-primary float-right" href="{{route('admin.recipes.create')}}">Add a new recipe</a>
+    @endrole
     </div>
     <div class="card-body">
         <table id="table-data" class="table table-bordered table-striped">
